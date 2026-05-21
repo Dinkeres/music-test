@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WAVR</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="logo">WAVR</div>
+
+    <nav class="nav">
+      <a href="#" class="nav-item active" data-view="home">
+        <svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9v9h-6v-5H9v5H3z"/></svg>
+        Home
+      </a>
+      <a href="#" class="nav-item" data-view="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </a>
+      <a href="#" class="nav-item" data-view="library">
+        <svg viewBox="0 0 24 24"><path d="M3 3h4v18H3zM9 3h4v18H9zM15 3l6 3v12l-6 3z"/></svg>
+        Library
+      </a>
+    </nav>
+
+    <div class="sidebar-section">
+      <p class="sidebar-label">Playlists</p>
+      <div id="playlist-list" class="playlist-list">
+        <div class="playlist-item new-playlist" id="new-playlist-btn">+ New Playlist</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main class="main">
+
+    <!-- Search Bar -->
+    <header class="topbar">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Search songs, artists, albums…" autocomplete="off"/>
+        <kbd>↵</kbd>
+      </div>
+      <div class="queue-toggle" id="queue-toggle-btn" title="Queue">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="15" y2="18"/></svg>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <section class="content" id="content">
+      <div class="home-hero">
+        <h1 class="hero-title">Good<br/><span>Vibes.</span></h1>
+        <p class="hero-sub">Search anything. Play everything.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Queue Panel ── -->
+  <aside class="queue-panel" id="queue-panel">
+    <div class="queue-header">
+      <span>Up Next</span>
+      <button id="clear-queue-btn">Clear</button>
+    </div>
+    <div id="queue-list" class="queue-list"></div>
+  </aside>
+
+  <!-- ── Player Bar ── -->
+  <footer class="player" id="player">
+    <div class="player-info">
+      <div class="player-thumb" id="player-thumb"></div>
+      <div class="player-meta">
+        <span class="player-title" id="player-title">—</span>
+        <span class="player-artist" id="player-artist">Select a track</span>
+      </div>
+      <button class="like-btn" id="like-btn" title="Like">♡</button>
+    </div>
+
+    <div class="player-controls">
+      <button class="ctrl-btn" id="shuffle-btn" title="Shuffle">
+        <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+      </button>
+      <button class="ctrl-btn" id="prev-btn" title="Previous">
+        <svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+      </button>
+      <button class="play-btn" id="play-btn">
+        <svg class="icon-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
+      <button class="ctrl-btn" id="next-btn" title="Next">
+        <svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+      </button>
+      <button class="ctrl-btn" id="repeat-btn" title="Repeat">
+        <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      </button>
+    </div>
+
+    <div class="player-right">
+      <div class="progress-wrap">
+        <span id="time-current">0:00</span>
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+          <div class="progress-thumb" id="progress-thumb"></div>
+        </div>
+        <span id="time-total">0:00</span>
+      </div>
+      <div class="volume-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <input type="range" id="volume-slider" min="0" max="100" value="80"/>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Lyrics Modal ── -->
+  <div class="lyrics-modal" id="lyrics-modal">
+    <div class="lyrics-inner">
+      <button class="lyrics-close" id="lyrics-close">✕</button>
+      <h2 id="lyrics-title"></h2>
+      <pre id="lyrics-body">Loading lyrics…</pre>
+    </div>
+  </div>
+
+  <audio id="audio-engine"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
